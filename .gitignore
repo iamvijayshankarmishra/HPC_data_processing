@@ -1,17 +1,3 @@
-# Build artifacts
-build/
-
-# Large datasets / test data (do not commit)
-dataset/
-
-# OS/editor junk
+dataset/nyc_311_2020_2026.csv
 .DS_Store
-*.swp
-*.swo
-*.tmp
-
-# Office temporary files
-~$*.docx
-
-# Jupyter
-.ipynb_checkpoints/
+/build
