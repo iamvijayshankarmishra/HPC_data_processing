@@ -1,73 +1,73 @@
 Phase 2 Benchmark — 10 runs
 Binary : ../build/phase2/phase2
 Dataset: ../dataset/nyc_311_2020_2026.csv
-Date   : Fri Mar  6 19:04:20 PST 2026
+Date   : Sat Mar  7 15:25:51 PST 2026
 ----------------------------------------
 
 === Run 1 ===
-[load|T=4]                        20129233 results     38716.29 ms
-[searchByZip|T=8]                  3878133 results       263.33 ms
-[searchByDate|T=8]                 3224721 results        57.40 ms
-[searchByBoundingBox|T=8]          8043002 results        68.54 ms
+[load|T=4]                        20129233 results     40882.67 ms
+[searchByZip|T=8]                  3878133 results       270.12 ms
+[searchByDate|T=8]                 3224721 results        56.91 ms
+[searchByBoundingBox|T=8]          8043002 results        69.34 ms
 
 === Run 2 ===
-[load|T=4]                        20129233 results     42657.11 ms
-[searchByZip|T=8]                  3878133 results       326.94 ms
-[searchByDate|T=8]                 3224721 results        72.43 ms
-[searchByBoundingBox|T=8]          8043002 results        86.29 ms
+[load|T=4]                        20129233 results     36680.77 ms
+[searchByZip|T=8]                  3878133 results       336.04 ms
+[searchByDate|T=8]                 3224721 results        76.22 ms
+[searchByBoundingBox|T=8]          8043002 results        89.67 ms
 
 === Run 3 ===
-[load|T=4]                        20129233 results     36393.60 ms
-[searchByZip|T=8]                  3878133 results       321.32 ms
-[searchByDate|T=8]                 3224721 results        73.90 ms
-[searchByBoundingBox|T=8]          8043002 results        85.08 ms
+[load|T=4]                        20129233 results     37607.61 ms
+[searchByZip|T=8]                  3878133 results       256.29 ms
+[searchByDate|T=8]                 3224721 results        55.64 ms
+[searchByBoundingBox|T=8]          8043002 results        68.54 ms
 
 === Run 4 ===
-[load|T=4]                        20129233 results     37052.30 ms
-[searchByZip|T=8]                  3878133 results       312.67 ms
-[searchByDate|T=8]                 3224721 results        73.37 ms
-[searchByBoundingBox|T=8]          8043002 results        69.54 ms
+[load|T=4]                        20129233 results     35984.24 ms
+[searchByZip|T=8]                  3878133 results       254.53 ms
+[searchByDate|T=8]                 3224721 results        58.38 ms
+[searchByBoundingBox|T=8]          8043002 results        70.06 ms
 
 === Run 5 ===
-[load|T=4]                        20129233 results     36374.64 ms
-[searchByZip|T=8]                  3878133 results       255.91 ms
-[searchByDate|T=8]                 3224721 results        57.88 ms
-[searchByBoundingBox|T=8]          8043002 results        68.88 ms
+[load|T=4]                        20129233 results     36362.37 ms
+[searchByZip|T=8]                  3878133 results       263.10 ms
+[searchByDate|T=8]                 3224721 results        56.63 ms
+[searchByBoundingBox|T=8]          8043002 results        70.19 ms
 
 === Run 6 ===
-[load|T=4]                        20129233 results     37393.78 ms
-[searchByZip|T=8]                  3878133 results       262.68 ms
-[searchByDate|T=8]                 3224721 results        57.73 ms
-[searchByBoundingBox|T=8]          8043002 results        67.72 ms
+[load|T=4]                        20129233 results     36927.48 ms
+[searchByZip|T=8]                  3878133 results       261.15 ms
+[searchByDate|T=8]                 3224721 results        56.98 ms
+[searchByBoundingBox|T=8]          8043002 results        67.65 ms
 
 === Run 7 ===
-[load|T=4]                        20129233 results     42231.78 ms
-[searchByZip|T=8]                  3878133 results       343.90 ms
-[searchByDate|T=8]                 3224721 results        76.62 ms
-[searchByBoundingBox|T=8]          8043002 results        86.78 ms
+[load|T=4]                        20129233 results     36334.50 ms
+[searchByZip|T=8]                  3878133 results       264.97 ms
+[searchByDate|T=8]                 3224721 results        56.04 ms
+[searchByBoundingBox|T=8]          8043002 results        72.26 ms
 
 === Run 8 ===
-[load|T=4]                        20129233 results     39852.91 ms
-[searchByZip|T=8]                  3878133 results       251.09 ms
-[searchByDate|T=8]                 3224721 results        56.63 ms
-[searchByBoundingBox|T=8]          8043002 results        70.43 ms
+[load|T=4]                        20129233 results     39689.58 ms
+[searchByZip|T=8]                  3878133 results       491.71 ms
+[searchByDate|T=8]                 3224721 results        64.28 ms
+[searchByBoundingBox|T=8]          8043002 results        90.59 ms
 
 === Run 9 ===
-[load|T=4]                        20129233 results     37608.02 ms
-[searchByZip|T=8]                  3878133 results       276.22 ms
-[searchByDate|T=8]                 3224721 results        60.55 ms
-[searchByBoundingBox|T=8]          8043002 results        72.48 ms
+[load|T=4]                        20129233 results     36188.87 ms
+[searchByZip|T=8]                  3878133 results       260.46 ms
+[searchByDate|T=8]                 3224721 results        57.24 ms
+[searchByBoundingBox|T=8]          8043002 results        70.84 ms
 
 === Run 10 ===
-[load|T=4]                        20129233 results     38668.68 ms
-[searchByZip|T=8]                  3878133 results       270.76 ms
-[searchByDate|T=8]                 3224721 results        60.43 ms
-[searchByBoundingBox|T=8]          8043002 results        67.26 ms
+[load|T=4]                        20129233 results     36200.35 ms
+[searchByZip|T=8]                  3878133 results       258.71 ms
+[searchByDate|T=8]                 3224721 results        61.28 ms
+[searchByBoundingBox|T=8]          8043002 results        71.00 ms
 
 ========================================
 Summary by thread count (ms)
 
-    load                    T=4  runs=10  avg=  38694.91 ms  min=  36374.64 ms  max=  42657.11 ms
-    searchByZip             T=8  runs=10  avg=    288.48 ms  min=    251.09 ms  max=    343.90 ms
-    searchByDate            T=8  runs=10  avg=     64.69 ms  min=     56.63 ms  max=     76.62 ms
-    searchByBoundingBox     T=8  runs=10  avg=     74.30 ms  min=     67.26 ms  max=     86.78 ms
+    load                    T=4  runs=10  avg=  37285.84 ms  min=  35984.24 ms  max=  40882.67 ms
+    searchByZip             T=8  runs=10  avg=    291.71 ms  min=    254.53 ms  max=    491.71 ms
+    searchByDate            T=8  runs=10  avg=     59.96 ms  min=     55.64 ms  max=     76.22 ms
+    searchByBoundingBox     T=8  runs=10  avg=     74.01 ms  min=     67.65 ms  max=     90.59 ms
