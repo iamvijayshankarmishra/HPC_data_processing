@@ -35,3 +35,39 @@ Date   : Sun Mar  8 10:38:59 PDT 2026
 [searchByBoundingBox|T=8]          8043188 results        43.97 ms
 
 === Run 6 ===
+[load|T=4]                        20129233 results     35090.55 ms
+[searchByZip|T=8]                  3878133 results        22.20 ms
+[searchByDate|T=8]                 3224721 results        16.83 ms
+[searchByBoundingBox|T=8]          8043188 results        43.54 ms
+
+=== Run 7 ===
+[load|T=4]                        20129233 results     34166.52 ms
+[searchByZip|T=8]                  3878133 results        20.55 ms
+[searchByDate|T=8]                 3224721 results        16.58 ms
+[searchByBoundingBox|T=8]          8043188 results        43.84 ms
+
+=== Run 8 ===
+[load|T=4]                        20129233 results     34777.36 ms
+[searchByZip|T=8]                  3878133 results        16.25 ms
+[searchByDate|T=8]                 3224721 results        14.83 ms
+[searchByBoundingBox|T=8]          8043188 results        38.69 ms
+
+=== Run 9 ===
+[load|T=4]                        20129233 results     35502.34 ms
+[searchByZip|T=8]                  3878133 results        21.10 ms
+[searchByDate|T=8]                 3224721 results        16.86 ms
+[searchByBoundingBox|T=8]          8043188 results        41.15 ms
+
+=== Run 10 ===
+[load|T=4]                        20129233 results     36055.09 ms
+[searchByZip|T=8]                  3878133 results        20.39 ms
+[searchByDate|T=8]                 3224721 results        17.73 ms
+[searchByBoundingBox|T=8]          8043188 results        39.78 ms
+
+========================================
+Summary by thread count (ms)
+
+    load                    T=4  runs=10  avg=  36554.79 ms  min=  34166.52 ms  max=  40231.85 ms
+    searchByZip             T=8  runs=10  avg=     20.24 ms  min=     16.25 ms  max=     22.25 ms
+    searchByDate            T=8  runs=10  avg=     16.86 ms  min=     14.83 ms  max=     19.70 ms
+    searchByBoundingBox     T=8  runs=10  avg=     41.40 ms  min=     38.48 ms  max=     43.97 ms
