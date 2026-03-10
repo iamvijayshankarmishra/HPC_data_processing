@@ -359,13 +359,13 @@ CMPE275-mini1/
 | 13 | Cross Street 2 | `location.cross_street_2` (pool) |
 | 14 | Intersection Street 1 | `location.intersection_1` (pool) |
 | 15 | Intersection Street 2 | `location.intersection_2` (pool) |
-| 16 | Address Type | **skipped** (sentinel 0) |
+| 16 | Address Type | `location.address_type` (interned `uint8_t`) |
 | 17 | City | `location.city` (pool) |
 | 18 | Landmark | `location.landmark` (pool) |
 | 19 | Facility Type | `service.facility_type` (pool) |
 | 20 | Status | `service.status` (interned `uint8_t`) |
 | 21 | Due Date | `time.due` (epoch) |
-| 22 | Resolution Description | **skipped** (see Pool Sizing below) |
+| 22 | Resolution Description | `service.resolution_desc` (dedicated `res_pool_`) |
 | 23 | Resolution Action Updated Date | `time.resolution` (epoch) |
 | 24 | Community Board | `admin.community_board` (`uint16_t`) |
 | 25 | Council District | `admin.council_district` (`uint16_t`) |
@@ -401,11 +401,13 @@ CMPE275-mini1/
 | Street Name (col 11) | 13 chars | ~0.26 GB |
 | All others combined | — | ~0.35 GB |
 
-**Decision:** `resolution_desc` (col 22) is **not stored in the pool**. At ~3GB, it alone exhausts the `uint32_t`-limited pool (max ~4.29 GB). It is not needed for any of the 3 range queries. Left as sentinel `{0,0}`.
+**Decision:** `resolution_desc` (col 22) is stored in a **dedicated second pool** (`res_pool_`, 3.2 GB). At ~3.08 GB it cannot share the main pool — the main pool plus resolution_desc would exceed the `uint32_t` offset limit of ~4.29 GB. Solution: two separate `StringPool` instances, each with its own `uint32_t` offset counter.
 
-**Pool size set to:** `3500 * 1024 * 1024` bytes (3.5 GB) — sufficient without `resolution_desc`.
+**Main pool size:** `3500 * 1024 * 1024` bytes (3.5 GB) — covers all string fields except col 22.
 
-**Constraint:** `StringRef.offset` is `uint32_t` → pool hard-capped at ~4.29 GB. Cannot exceed this without changing `StringRef` to `uint64_t` offset (which would increase struct size).
+**Resolution pool size:** `3200 * 1024 * 1024` bytes (3.2 GB) — exclusively for `resolution_desc`.
+
+**Constraint:** `StringRef.offset` is `uint32_t` → each pool hard-capped at ~4.29 GB. Cannot exceed this without changing `StringRef` to `uint64_t` offset (which would increase struct size).
 
 ---
 
@@ -477,10 +479,10 @@ No sleep between runs (data stays warm in OS page cache after first load).
 
 ### Known Trade-offs / Limitations (Phase 1)
 
-1. **`resolution_desc` not stored** — field exists in `ServiceRequest.hpp` but is always `{0,0}` sentinel. At ~154 chars avg × 20M rows = ~3.08 GB, it alone would exhaust the `uint32_t`-limited pool (max ~4.29 GB). Not needed for any of the 3 range queries.
-2. **`address_type` (col 16) not stored in Phase 1** — column skipped, `location.address_type` always 0. Fixed in Phase 2.
-3. **Pool capped at ~4.29 GB** — `StringRef.offset` is `uint32_t`. Cannot exceed without changing to `uint64_t` offset (+4 bytes per StringRef × 20M records × ~21 StringRefs = +1.68 GB).
-4. **Linear scan searches** — O(n) per query, no indices. Phase 2 adds parallelism; Phase 3 would add indexing/vectorization.
+1. **`resolution_desc` stored in dedicated `res_pool_`** — at ~154 chars avg × 20M rows = ~3.08 GB it cannot share the main pool (uint32_t offset limit ~4.29 GB). Solution: two separate StringPool instances. Not needed for range queries but stored for completeness.
+2. **`address_type` (col 16) IS stored in Phase 1** — uses `address_type_reg_.encode()` same as all other categorical fields.
+3. **Pool capped at ~4.29 GB per pool** — `StringRef.offset` is `uint32_t`. Cannot exceed without changing to `uint64_t` offset (+4 bytes per StringRef × 20M records × ~21 StringRefs = +1.68 GB).
+4. **Linear scan searches** — O(n) per query, no indices. Phase 2 adds parallelism; Phase 3 adds SoA layout for cache-dense scans.
 
 ---
 
@@ -736,8 +738,8 @@ Fixed threads: Load=4, Search=8.
 
 ### Phase 2 Known Differences from Phase 1
 
-1. **`resolution_desc` (col 22) IS stored in Phase 2** — uses dedicated `res_pool_` (3.2 GB). Phase 1 always set this to `{0,0}`.
-2. **`address_type` (col 16) IS stored in Phase 2** — uses `address_type_reg_`. Phase 1 skipped it.
+1. **`resolution_desc` (col 22) stored identically to Phase 1** — both phases use dedicated `res_pool_` (3.2 GB). No difference here.
+2. **`address_type` (col 16) stored identically to Phase 1** — both phases use `address_type_reg_`. No difference here.
 3. **Same `ServiceRequest` struct** — reused from `phase1/include/ServiceRequest.hpp`. No duplication.
 4. **Same result counts** — verified: 20,129,233 records loaded, same 3 search results as Phase 1.
 
